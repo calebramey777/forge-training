@@ -1,7 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 export default function TrainingApp() {
   const [activeTab, setActiveTab] = useState('calendar')
@@ -64,7 +68,7 @@ export default function TrainingApp() {
       {activeTab === 'calendar' && (
         <div style={{ background: '#f9f9f9', padding: '20px', borderRadius: '8px' }}>
           <h2>📅 Calendar</h2>
-          <p>Your {races.length} races are synced to Supabase ✓</p>
+          <p>Your {races.length} races synced to Supabase ✓</p>
         </div>
       )}
 
